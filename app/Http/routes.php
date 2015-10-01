@@ -14,3 +14,7 @@
 Route::get('/', 'IndexController@index');
 Route::get('about', 'PagesController@index');
 Route::resource('articles', 'ArticlesController');
+Route::controllers([
+    'auth' => 'Auth\AuthController',
+    'password' => 'Auth\PasswordController'
+]);
