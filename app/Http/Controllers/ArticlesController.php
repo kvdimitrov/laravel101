@@ -10,17 +10,17 @@ class ArticlesController extends Controller
     public function index(){
         $articles = Article::latest('published_at')->published()->get();
         
-        return view('pages/articles', compact('articles'));
+        return view('articles/articles', compact('articles'));
     }
     
     public function show($id){
         $article = Article::findOrFail($id);       
         
-        return view('pages/show', compact('article'));
+        return view('articles/show', compact('article'));
     }
     
     public function create(){
-        return view('pages/create');
+        return view('articles/create');
     }
     
     public function store(ArticleRequest $request){
@@ -33,7 +33,7 @@ class ArticlesController extends Controller
     public function edit($id){
 
         $article = Article::findOrFail($id);
-        return view('pages/edit', compact('article'));
+        return view('articles/edit', compact('article'));
     }
 
     public function update($id, ArticleRequest $request){

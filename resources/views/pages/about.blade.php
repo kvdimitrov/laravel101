@@ -1,4 +1,4 @@
-@extends('templates/app');
+@extends('templates.app');
 @section('content')
 <h1>About {{ $about_title }}</h1>
 <p>{{ $about_text }}</p>
