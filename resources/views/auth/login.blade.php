@@ -1,24 +1,60 @@
 @extends('templates/app')
 @section('content')
-<form method="POST" action="/auth/login">
-    {!! csrf_field() !!}
+    <div class="modal-dialog">
+        <div class="loginmodal-container">
+            <h1>Login to Your Account</h1><br>
 
-    <div>
-        Email
-        <input type="email" name="email" value="{{ old('email') }}">
-    </div>
+            <form method="POST" action="/auth/login">
+                {!! csrf_field() !!}
 
-    <div>
-        Password
-        <input type="password" name="password" id="password">
-    </div>
+                <input type="email" name="email" value="{{ old('email') }}" placeholder="Email">
+                <input type="password" name="password" id="password" placeholder="Password">
+                <input type="checkbox" name="remember"> Remember Me
+                <button type="submit">Login</button>
 
-    <div>
-        <input type="checkbox" name="remember"> Remember Me
-    </div>
+            </form>
 
-    <div>
-        <button type="submit">Login</button>
+            <div class="login-help">
+                <a href="#">Register</a> - <a href="#">Forgot Password</a>
+            </div>
+        </div>
     </div>
-</form>
+@stop
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     @stop
