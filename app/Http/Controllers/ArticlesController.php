@@ -1,11 +1,9 @@
-<?php
+<?php namespace App\Http\Controllers;
 
-namespace App\Http\Controllers;
 use App\Article;
-//use Illuminate\Http\Request;
-// use App\Http\Requests;
-use Request;
-use Carbon\Carbon;
+use App\Http\Requests;
+use App\Http\Requests\CreateArticleRequest;
+use Illuminate\HttpResponse;
 use App\Http\Controllers\Controller;
 
 class ArticlesController extends Controller
@@ -26,11 +24,9 @@ class ArticlesController extends Controller
         return view('pages/create');
     }
     
-    public function store(){
-        
-        
-        
-        Article::create(Request::all());
+    public function store(CreateArticleRequest $request){
+                
+        Article::create($request->all());
         
         return redirect('articles');
     }
