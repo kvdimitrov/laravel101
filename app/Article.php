@@ -20,7 +20,7 @@ class Article extends Model {
         $query->where('published_at', '<=', Carbon::now());
     }
     public function setPublishedAtAttribute($date){
-        $this->attributes['published_at'] = Carbon::parse($date);
+        $this->attributes['published_at'] = Carbon::createFromFormat('Y-m-d', $date);
     }
     public function user(){
         return $this->belongsTo('App\User');

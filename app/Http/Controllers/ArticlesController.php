@@ -30,7 +30,9 @@ class ArticlesController extends Controller {
 
         $article = new Article($request->all());\
         Auth::user()->articles()->save($article);
-        
+
+        session()->flash('flash_message', 'Your article has been created!');
+
         return redirect('articles');
     }
 
@@ -39,7 +41,7 @@ class ArticlesController extends Controller {
     }
 
     public function update(Article $article, ArticleRequest $request){
-        $article->update($request->all());
+       $article->update($request->all());
 
         return redirect('articles');
     }
