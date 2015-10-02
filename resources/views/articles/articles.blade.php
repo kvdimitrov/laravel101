@@ -1,6 +1,9 @@
 @extends('templates/app');
 @section('content')
-<h1>Articles</h1>
+<h1>Articles
+</h1>@if(Auth::check())
+    <a href="/articles/create">Create new article</a>
+@endif
 <hr>
 @foreach($articles as $article)
 <article>

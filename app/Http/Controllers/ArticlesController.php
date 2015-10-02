@@ -4,6 +4,7 @@ use App\Article;
 use App\Http\Requests;
 use App\Http\Requests\ArticleRequest;
 use Illuminate\HttpResponse;
+use Auth;
 
 class ArticlesController extends Controller {
 
@@ -12,10 +13,9 @@ class ArticlesController extends Controller {
     }
 
     public function index(){
+            $articles = Article::latest('published_at')->published()->get();
 
-        $articles = Article::latest('published_at')->published()->get();
-        
-        return view('articles/articles', compact('articles'));
+            return view('articles/articles', compact('articles'));
     }
     
     public function show(Article $article){
@@ -28,8 +28,8 @@ class ArticlesController extends Controller {
     
     public function store(ArticleRequest $request){
 
-        $article = new Article($request->all());\
-        Auth::user()->articles()->save($article);
+
+        Auth::user()->articles()->create($request->all());
 
         session()->flash('flash_message', 'Your article has been created!');
 
