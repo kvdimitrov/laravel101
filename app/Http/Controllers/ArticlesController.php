@@ -18,9 +18,7 @@ class ArticlesController extends Controller {
         return view('articles/articles', compact('articles'));
     }
     
-    public function show($id){
-        $article = Article::findOrFail($id);       
-        
+    public function show(Article $article){
         return view('articles/show', compact('article'));
     }
     
@@ -36,14 +34,11 @@ class ArticlesController extends Controller {
         return redirect('articles');
     }
 
-    public function edit($id){
-
-        $article = Article::findOrFail($id);
+    public function edit(Article $article){
         return view('articles/edit', compact('article'));
     }
 
-    public function update($id, ArticleRequest $request){
-        $article = Article::findOrFail($id);
+    public function update(Article $article, ArticleRequest $request){
         $article->update($request->all());
 
         return redirect('articles');
