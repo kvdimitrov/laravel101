@@ -2,7 +2,7 @@
 @section('content')
 <h1>Articles
 </h1>@if(Auth::check())
-    <a href="/articles/create">Create new article</a>
+    <a href="/articles/create">{{ $data['create'] }}</a>
 @endif
 <hr>
 @foreach($articles as $article)

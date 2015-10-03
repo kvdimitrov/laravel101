@@ -9,13 +9,16 @@ use Auth;
 class ArticlesController extends Controller {
 
     public function __construct(){
-        $this->middleware('auth', ['only' => 'create']);
+        $this->middleware('auth', ['only' => ['create']]);
     }
 
     public function index(){
-            $articles = Article::latest('published_at')->published()->get();
+        $articles = Article::latest('published_at')->published()->get();
 
-            return view('articles/articles', compact('articles'));
+        $data = array(
+            'create' => 'Create new article'
+        );
+        return view('articles/articles', compact('articles', 'data'));
     }
     
     public function show(Article $article){
@@ -27,10 +30,7 @@ class ArticlesController extends Controller {
     }
     
     public function store(ArticleRequest $request){
-
-
         Auth::user()->articles()->create($request->all());
-
         session()->flash('flash_message', 'Your article has been created!');
 
         return redirect('articles');
@@ -41,7 +41,7 @@ class ArticlesController extends Controller {
     }
 
     public function update(Article $article, ArticleRequest $request){
-       $article->update($request->all());
+        $article->update($request->all());
 
         return redirect('articles');
     }
